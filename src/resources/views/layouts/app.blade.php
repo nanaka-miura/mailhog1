@@ -12,7 +12,7 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <a class="header__logo" href="/register">
+            <a class="header__logo" href="/">
                 <img src="{{ asset('images/logo.svg') }}" alt="logo">
             </a>
             <form class="search-form" action="">

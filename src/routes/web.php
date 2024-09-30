@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 
 /*
@@ -19,3 +20,4 @@ use App\Http\Controllers\UserController;
 Route::get('/login', [AuthController::class,'index']);
 Route::get('/register', [AuthController::class,'register']);
 Route::get('/mypage/profile', [UserController::class,'profile']);
+Route::get('/', [ProductController::class,'index']);
