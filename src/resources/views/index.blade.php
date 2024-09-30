@@ -48,8 +48,7 @@
                 <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
                 <p class="product-list__item--name">商品名</p>
             </div>
+        </div>
     </div>
-</div>
-
 </div>
 @endsection

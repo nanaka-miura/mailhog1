@@ -10,4 +10,8 @@ class UserController extends Controller
     {
         return view('profile-edit');
     }
+    public function mypage()
+    {
+        return view('profile');
+    }
 }

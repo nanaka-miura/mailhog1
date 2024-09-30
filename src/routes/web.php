@@ -21,3 +21,4 @@ Route::get('/login', [AuthController::class,'index']);
 Route::get('/register', [AuthController::class,'register']);
 Route::get('/mypage/profile', [UserController::class,'profile']);
 Route::get('/', [ProductController::class,'index']);
+Route::get('/mypage', [UserController::class,'mypage']);
