@@ -11,7 +11,8 @@
     </div>
     <form class="form" action="">
         <div class="form__group">
-            <input type="file" name="image" accept="image/*">
+            <label class="form__file" for="file-upload">画像を選択する</label>
+            <input id="file-upload" class="form__file" type="file" name="image" accept="image/*" style="display: none;">
             <div class="form__error"></div>
         </div>
         <div class="form__group">

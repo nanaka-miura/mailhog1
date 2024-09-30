@@ -16,6 +16,18 @@
     max-width: 100vh;
 }
 
+.form__file {
+    background: none;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    color: #FF5555;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+}
+
 .form__group {
     display: flex;
     flex-flow: column;
