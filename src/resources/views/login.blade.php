@@ -11,9 +11,9 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <div class="header__logo">
+            <a class="header__logo" href="/login">
                 <img src="{{ asset('images/logo.svg') }}" alt="logo">
-            </div>
+            </a>
         </div>
     </header>
     <main>
