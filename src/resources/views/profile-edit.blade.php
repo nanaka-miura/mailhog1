@@ -11,8 +11,11 @@
     </div>
     <form class="form" action="">
         <div class="form__group">
-            <label class="form__file" for="file-upload">画像を選択する</label>
-            <input id="file-upload" class="form__file" type="file" name="image" accept="image/*" style="display: none;">
+            <div class="profile__img">
+                <img class="profile__img--item" src="{{ asset('images/firstview.jpg') }}" alt="">
+                <label class="form__file" for="file-upload">画像を選択する</label>
+                <input id="file-upload" class="form__file" type="file" name="image" accept="image/*" style="display: none;">
+            </div>
             <div class="form__error"></div>
         </div>
         <div class="form__group">

@@ -16,6 +16,14 @@
     max-width: 100vh;
 }
 
+.profile__img--item {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    max-width: 170px;
+
+}
 .form__file {
     background: none;
     border: 2px solid #FF5555;
