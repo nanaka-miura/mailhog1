@@ -1,7 +1,7 @@
 .edit__content {
     margin: 0 auto;
     max-width: 1540px;
-    padding: 50px 30px;
+    padding: 20px 30px;
 }
 
 .edit__heading {
@@ -23,6 +23,7 @@
     color: #FF5555;
     cursor: pointer;
     display: inline-block;
+    font-weight: bold;
     padding: 10px;
     text-align: center;
     width: 150px;

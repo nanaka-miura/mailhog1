@@ -1,0 +1,126 @@
+.listing__content {
+    margin: 0 auto;
+    max-width: 1540px;
+    padding: 20px 30px;
+}
+
+.listing__heading {
+    font-size: 22px;
+    margin-bottom: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+.form {
+    margin: 0 auto;
+    max-width: 100vh;
+}
+
+.form__box {
+    margin-bottom: 50px;
+}
+
+.form__box--heading {
+    border-bottom: 1px solid #5F5F5F;
+    margin-bottom: 40px;
+}
+
+.form__box--heading--item {
+    color: #5F5F5F;
+    margin-bottom: 5px;
+}
+
+.form__file {
+    align-items: center;
+    border: 1px dashed #5F5F5F;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+
+.form__file--item {
+    background: none;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    color: #FF5555;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+}
+
+.form__group {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 30px;
+}
+
+.form__label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form__checkbox__group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 15px 22px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form__checkbox {
+    display: none;
+}
+
+.form__checkbox:checked+.form__checkbox--label {
+    background: #FF5655;
+    border-radius: 200px;
+    color: #FFF;
+    padding: 4px 16px;
+}
+
+.form__checkbox--label {
+    border: 2px solid #FF5655;
+    border-radius: 200px;
+    color: #FF5655;
+    padding: 4px 16px;
+}
+
+.form__select {
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    color: #5F5F5F;
+    font-weight: bold;
+    height: 50px;
+    padding: 10px;
+}
+
+.form__input {
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    height: 50px;
+    padding: 10px;
+}
+
+.form__button {
+    margin-bottom: 30px;
+    margin-top: 70px;
+    max-width: 100vh;
+    text-align: center;
+}
+
+.form__button--submit {
+    background: #FF5555;
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    height: 50px;
+    width: 100%;
+}
