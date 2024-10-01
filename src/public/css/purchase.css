@@ -1,0 +1,195 @@
+.purchase__content {
+    display: flex;
+    gap: 5%;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1540px;
+    padding: 100px;
+}
+
+.purchase__content--detail {
+    flex: 4;
+}
+
+.product__detail {
+    border-bottom: 1px solid #000;
+    display: flex;
+    gap: 10%;
+    padding-bottom: 40px;
+}
+
+.product__detail--img--item {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    max-width: 200px;
+}
+
+.product__detail--name {
+    border: none;
+    font-size: 26px;
+    font-weight: bold;
+    outline: none;
+}
+
+.product__detail--price {
+    display: flex;
+    font-size: 24px;
+    gap: 5px;
+}
+
+.product__detail--price--item {
+    border: none;
+    font-size: 26px;
+    outline: none;
+}
+
+.payment {
+    border-bottom: 1px solid #000;
+    padding-bottom: 40px;
+}
+
+.payment__header {
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.payment__item {
+    padding-left: 70px;
+    position: relative;
+    width: 50%;
+}
+
+.payment__item::after {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid #5F5F5F;
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-10%);
+}
+
+.payment__item--select {
+    appearance: none;
+    margin-top: 10px;
+    padding: 5px;
+    padding-right: 50px;
+    width: 100%;
+}
+
+
+.shipping-address {
+    border-bottom: 1px solid #000;
+    padding-bottom: 40px;
+}
+
+.shipping-address__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.shipping-address__header--item {
+    font-weight: bold;
+}
+
+.shipping-address__mark {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.shipping-address__post {
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    margin-top: 20px;
+    padding-left: 70px;
+}
+
+.shipping-address__item {
+    border: none;
+    font-weight: bold;
+    outline: none;
+}
+
+.shipping-address__address {
+    padding-left: 70px;
+}
+
+.shipping-address__address--item,
+.shipping-address__address--building {
+    border: none;
+    font-weight: bold;
+    outline: none;
+}
+
+.purchase__content--confirmation {
+    flex: 3;
+}
+
+.table {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table__row {
+    border-bottom: 1px solid #000;
+}
+
+.table__header {
+    font-weight: lighter;
+    width: 50%;
+    padding-top: 30px;
+        padding-bottom: 30px;
+}
+
+.table__price,
+.table__payment {
+    width: 50%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.table__price {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+.table__payment {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.table__price {
+    display: flex;
+    justify-content: center;
+}
+
+.table__price--mark,
+.table__price--item,
+.table__payment--item {
+    font-size: 18px;
+    text-align: center;
+}
+
+.table__payment--item {
+    text-align: center;
+}
+
+.purchase-button {
+    background: #FF5555;
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 40px;
+    padding: 10px;
+    width: 100%;
+}

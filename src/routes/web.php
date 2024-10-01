@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 
 
 /*
@@ -24,3 +25,4 @@ Route::get('/', [ProductController::class,'index']);
 Route::get('/mypage', [UserController::class,'mypage']);
 Route::get('/sell', [ProductController::class,'sell']);
 Route::get('/item', [ProductController::class,'detail']);
+Route::get('/purchase', [PurchaseController::class,'index']);
