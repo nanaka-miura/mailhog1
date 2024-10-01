@@ -15,4 +15,9 @@ class ProductController extends Controller
     {
         return view('listing');
     }
+
+    public function detail()
+    {
+        return view('product-detail');
+    }
 }

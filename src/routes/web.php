@@ -23,3 +23,4 @@ Route::get('/mypage/profile', [UserController::class,'profile']);
 Route::get('/', [ProductController::class,'index']);
 Route::get('/mypage', [UserController::class,'mypage']);
 Route::get('/sell', [ProductController::class,'sell']);
+Route::get('/item', [ProductController::class,'detail']);
