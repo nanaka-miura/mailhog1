@@ -92,12 +92,31 @@
 }
 
 .form__select {
+    position: relative;
+}
+
+.form__select::after {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 14px solid #5F5F5F;
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.form__select--input {
+    appearance: none;
     border: 1px solid #5F5F5F;
     border-radius: 4px;
     color: #5F5F5F;
     font-weight: bold;
     height: 50px;
     padding: 10px;
+    width: 100%;
 }
 
 .form__input {
@@ -105,6 +124,15 @@
     border-radius: 4px;
     height: 50px;
     padding: 10px;
+}
+
+.form__textarea {
+    padding: 10px;
+    resize: none;
+}
+
+.form__input--price::before {
+    content:"&yen;"
 }
 
 .form__button {

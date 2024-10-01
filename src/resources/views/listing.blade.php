@@ -61,13 +61,15 @@
             </div>
             <div class="form__group">
                 <span class="form__label">商品の状態</span>
-                <select class="form__select" name="situation">
-                    <option value="" hidden>選択してください</option>
-                    <option value="良好">良好</option>
-                    <option value="目立った傷や汚れなし">目立った傷や汚れなし</option>
-                    <option value="やや傷や汚れあり">やや傷や汚れあり</option>
-                    <option value="状態が悪い">状態が悪い</option>
-                </select>
+                <div class="form__select">
+                    <select class="form__select--input" name="situation">
+                        <option value="" hidden>選択してください</option>
+                        <option value="良好">良好</option>
+                        <option value="目立った傷や汚れなし">目立った傷や汚れなし</option>
+                        <option value="やや傷や汚れあり">やや傷や汚れあり</option>
+                        <option value="状態が悪い">状態が悪い</option>
+                    </select>
+                </div>
                 <div class="form__error"></div>
             </div>
         </div>
@@ -87,7 +89,7 @@
             </div>
             <div class="form__group">
                 <span class="form__label">販売価格</span>
-                <input class="form__input" type="text">
+                <input class="form__input form__input--price" id="price-input" type="text">
                 <div class="form__error"></div>
             </div>
         </div>
@@ -96,4 +98,23 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const priceInput = document.getElementById('price-input');
+        const listingForm = document.getElementById('listing-form');
+
+        priceInput.value = "¥";
+
+        priceInput.addEventListener('input', function () {
+            if (!priceInput.value.startsWith("¥")) {
+                priceInput.value = "¥" + priceInput.value.replace("¥", "");
+            }
+        });
+
+        listingForm.addEventListener('submit', function (e) {
+            priceInput.value = priceInput.value.replace("¥", "");
+        });
+    });
+</script>
 @endsection
