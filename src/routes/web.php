@@ -26,3 +26,4 @@ Route::get('/mypage', [UserController::class,'mypage']);
 Route::get('/sell', [ProductController::class,'sell']);
 Route::get('/item', [ProductController::class,'detail']);
 Route::get('/purchase', [PurchaseController::class,'index']);
+Route::get('/purchase/address', [UserController::class,'address']);

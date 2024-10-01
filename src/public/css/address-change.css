@@ -1,0 +1,67 @@
+.address-change__content {
+    margin: 0 auto;
+    max-width: 1540px;
+    padding: 20px 30px;
+}
+
+.address-change__heading {
+    font-size: 22px;
+    margin-bottom: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+.form {
+    margin: 0 auto;
+    max-width: 100vh;
+}
+
+.form__file {
+    background: none;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    color: #FF5555;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+}
+
+.form__group {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 30px;
+}
+
+.form__label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form__input {
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    height: 50px;
+    padding: 10px;
+}
+
+.form__button {
+    margin-bottom: 30px;
+    margin-top: 70px;
+    max-width: 100vh;
+    text-align: center;
+}
+
+.form__button--submit {
+    background: #FF5555;
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    height: 50px;
+    width: 100%;
+}
