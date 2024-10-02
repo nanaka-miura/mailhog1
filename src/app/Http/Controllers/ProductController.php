@@ -42,4 +42,10 @@ class ProductController extends Controller
 
         return redirect('/');
     }
+
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('product-detail',compact('product'));
+    }
 }

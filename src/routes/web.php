@@ -27,3 +27,4 @@ Route::get('/mypage/profile', [UserController::class,'profile'])->middleware(['a
 Route::post('/mypage/profile', [UserController::class,'update'])->middleware(['auth']);
 Route::get('/sell', [ProductController::class,'create'])->middleware(['auth']);
 Route::post('/sell', [ProductController::class,'store'])->middleware(['auth']);
+Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');

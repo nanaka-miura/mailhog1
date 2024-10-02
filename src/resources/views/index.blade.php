@@ -14,8 +14,10 @@
         <div class="product-list__item">
             @foreach($products as $product)
                 <div class="product-list__item--box" id="content1">
-                    <img class="product-list__item--img" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-                    <p class="product-list__item--name">{{ $product->name }}</p>
+                    <a class="product-list__item--link" href="{{ route('products.show', $product->id) }}">
+                        <img class="product-list__item--img" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                        <p class="product-list__item--name">{{ $product->name }}</p>
+                    </a>
                 </div>
             @endforeach
         </div>
