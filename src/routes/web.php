@@ -18,12 +18,4 @@ use App\Http\Controllers\PurchaseController;
 |
 */
 
-Route::get('/login', [AuthController::class,'index']);
-Route::get('/register', [AuthController::class,'register']);
-Route::get('/mypage/profile', [UserController::class,'profile']);
 Route::get('/', [ProductController::class,'index']);
-Route::get('/mypage', [UserController::class,'mypage']);
-Route::get('/sell', [ProductController::class,'sell']);
-Route::get('/item', [ProductController::class,'detail']);
-Route::get('/purchase', [PurchaseController::class,'index']);
-Route::get('/purchase/address', [UserController::class,'address']);

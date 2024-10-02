@@ -10,14 +10,4 @@ class ProductController extends Controller
     {
         return view('index');
     }
-
-    public function sell()
-    {
-        return view('listing');
-    }
-
-    public function detail()
-    {
-        return view('product-detail');
-    }
 }
