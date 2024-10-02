@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Actions\Fortify\CreateNewUser;
+use Illuminate\Http\Request;
 
 
 /*
@@ -20,5 +22,6 @@ use App\Http\Controllers\PurchaseController;
 
 Route::get('/', [ProductController::class,'index']);
 Route::get('/register', [AuthController::class,'register']);
-Route::post('register', [AuthController::class,'store']);
+Route::post('/register', [AuthController::class, 'store']);
 Route::get('/mypage/profile', [UserController::class,'profile'])->middleware(['auth']);
+Route::post('/mypage/profile', [UserController::class,'update'])->middleware(['auth']);
