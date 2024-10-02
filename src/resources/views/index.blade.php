@@ -12,42 +12,12 @@
         <input class="product-list__tab--input" type="radio" name="tab" id="tab2">
         <label class="product-list__tab--label" for="tab2">マイリスト</label>
         <div class="product-list__item">
-            <div class="product-list__item--box" id="content1">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
-            <div class="product-list__item--box" id="content2">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
-            <div class="product-list__item--box" id="content2">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
-            <div class="product-list__item--box" id="content2">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
-            <div class="product-list__item--box" id="content2">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
-            <div class="product-list__item--box" id="content2">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
-            <div class="product-list__item--box" id="content1">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
-            <div class="product-list__item--box" id="content1">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
-            <div class="product-list__item--box" id="content1">
-                <img class="product-list__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="product-list__item--name">商品名</p>
-            </div>
+            @foreach($products as $product)
+                <div class="product-list__item--box" id="content1">
+                    <img class="product-list__item--img" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                    <p class="product-list__item--name">{{ $product->name }}</p>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
