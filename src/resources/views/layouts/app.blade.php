@@ -18,11 +18,11 @@
             <form class="search-form" action="">
                 <input class="search-form__item--input" type="text" placeholder="なにをお探しですか？">
             </form>
-            <div class="header__item">
+            <div class="header__item header__item--button-group">
                 @if(Auth::check())
                 <form class="header__item--logout" action="/logout" method="post">
                     @csrf
-                    <button>ログアウト</button>
+                    <button class="header__item--logout-button">ログアウト</button>
                 </form>
                 @else
                 <a class="header__item--login" href="/login">ログイン</a>

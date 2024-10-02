@@ -14,7 +14,11 @@
 .header__item {
     align-items: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.header__item--button-group {
+    width: 25%;
 }
 
 .search-form {
@@ -39,14 +43,25 @@
 .header__item--logout,
 .header__item--mypage {
     color: #FFF;
+    font-size: 16px;
     margin-right: 20px;
     text-decoration: none;
+}
+
+.header__item--logout-button {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    color: #FFF;
+    font-size: 16px;
 }
 
 .header__item--sell {
     background: #FFF;
     border-radius: 4px;
     color: #000;
+    margin-left: 10px;
     padding: 5px 15px;
+    text-align: center;
     text-decoration: none;
 }
