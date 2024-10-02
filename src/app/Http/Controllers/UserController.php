@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 class UserController extends Controller
 {
-    public function profile()
+    public function profileEdit()
     {
         $user = auth()->user();
         return view('profile-edit',compact('user'));
@@ -24,5 +25,12 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/');
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        $products = Product::where('user_id',$user->id)->get();
+        return view('profile',compact('user','products'));
     }
 }
