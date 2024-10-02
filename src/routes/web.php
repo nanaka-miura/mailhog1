@@ -19,3 +19,6 @@ use App\Http\Controllers\PurchaseController;
 */
 
 Route::get('/', [ProductController::class,'index']);
+Route::get('/register', [AuthController::class,'register']);
+Route::post('register', [AuthController::class,'store']);
+Route::get('/mypage/profile', [UserController::class,'profile'])->middleware(['auth']);

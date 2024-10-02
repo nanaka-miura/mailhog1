@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('condition');
             $table->integer('price');
             $table->string('image');
-            $table->boolean('sold_out')->nullable;
+            $table->boolean('sold_out')->nullable();
             $table->timestamps();
         });
     }

@@ -20,7 +20,8 @@
             </form>
             <div class="header__item">
                 @if(Auth::check())
-                <form class="header__item--logout" action="/logout">
+                <form class="header__item--logout" action="/logout" method="post">
+                    @csrf
                     <button>ログアウト</button>
                 </form>
                 @else

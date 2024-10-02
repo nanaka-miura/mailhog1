@@ -21,19 +21,24 @@
             <div class="login__heading">
                 <h2>ログイン</h2>
             </div>
-            <form class="form" action="">
-                <div class="form__group">
-                    <span class="form__label">ユーザー名</span>
-                    <input class="form__input" type="text">
-                    <div class="form__error"></div>
-                </div>
+            <form class="form" action="/login" method="post">
+                @csrf
                 <div class="form__group">
                     <span class="form__label">メールアドレス</span>
-                    <input class="form__input" type="email">
-                    <div class="form__error"></div>
+                    <input class="form__input" type="email" name="email">
+                    <div class="form__error">@error('email')
+                        {{ $message }}
+                        @enderror</div>
+                </div>
+                <div class="form__group">
+                    <span class="form__label">パスワード</span>
+                    <input class="form__input" type="password" name="password">
+                    <div class="form__error">@error('password')
+                        {{ $message }}
+                        @enderror</div>
                 </div>
                 <div class="form__button">
-                    <button class="form__button--submit">ログインする</button>
+                    <button class="form__button--submit" type="submit">ログインする</button>
                 </div>
             </form>
             <div class="register">
