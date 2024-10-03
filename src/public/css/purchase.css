@@ -139,20 +139,22 @@
 
 .table__row {
     border-bottom: 1px solid #000;
+    height: 120px;
+    vertical-align: middle;
 }
 
 .table__header {
     font-weight: lighter;
-    width: 50%;
     padding-top: 30px;
-        padding-bottom: 30px;
+    padding-bottom: 30px;
+    width: 50%;
 }
 
 .table__price,
 .table__payment {
-    width: 50%;
     padding-top: 30px;
     padding-bottom: 30px;
+    width: 50%;
 }
 
 .table__price {

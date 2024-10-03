@@ -16,14 +16,27 @@
     max-width: 100vh;
 }
 
-.profile__img--item {
+.profile__img {
+    align-items: center;
+    display: flex;
+}
+.profile__item--img {
     aspect-ratio: 1/1;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 20px;
     max-width: 170px;
-
 }
+
+.profile__item--default-img {
+    aspect-ratio: 1/1;
+    background: #D9D9D9;
+    border-radius: 50%;
+    height: 170px;
+    margin-right: 20px;
+    max-width: 170px;
+}
+
 .form__file {
     background: none;
     border: 2px solid #FF5555;

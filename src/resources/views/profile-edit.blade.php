@@ -9,11 +9,15 @@
     <div class="edit__heading">
         <h2>プロフィール設定</h2>
     </div>
-    <form class="form" action="/mypage/profile" method="post">
+    <form class="form" action="/mypage/profile" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form__group">
             <div class="profile__img">
-                <img class="profile__img--item" src="{{ asset('images/firstview.jpg') }}" alt="">
+                @if ($user->image)
+                    <img class="profile__item--img" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
+                @else
+                    <div class="profile__item--default-img"></div>
+                @endif
                 <label class="form__file" for="file-upload">画像を選択する</label>
                 <input id="file-upload" class="form__file" type="file" name="image" accept="image/*" style="display: none;">
             </div>

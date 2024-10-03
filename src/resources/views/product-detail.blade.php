@@ -18,7 +18,8 @@
                 <p class="product__evaluation--star">星</p>
                 <p class="product__evaluation--comment">コメント</p>
             </div>
-            <form class="product__sell" action="">
+            <form class="product__sell" action="{{ route('purchase', ['id' => $product->id]) }}" method="get">
+                @csrf
                 <button class="product__sell--button">購入手続きへ</button>
             </form>
             <h3 class="product__explanation__header">商品説明</h3>

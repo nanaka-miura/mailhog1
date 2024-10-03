@@ -29,3 +29,4 @@ Route::get('/sell', [ProductController::class,'create'])->middleware(['auth']);
 Route::post('/sell', [ProductController::class,'store'])->middleware(['auth']);
 Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/mypage', [UserController::class, 'profile'])->middleware(['auth']);
+Route::get('/purchase/{id}', [PurchaseController::class,'show'])->name('purchase');

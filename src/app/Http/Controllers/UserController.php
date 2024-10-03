@@ -16,9 +16,11 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        $imagePath = $request->file('image')->store('products', 'public');
 
         $user = Auth::user();
         $user->name = $request->name;
+        $user->image = $imagePath;
         $user->postal_code = $request->postal_code;
         $user->address = $request->address;
         $user->building = $request->building;

@@ -8,7 +8,7 @@
 <div class="mypage__content">
     <div class="profile">
         <div class="profile__item">
-            <img class="profile__item--img" src="{{ asset('images/firstview.jpg') }}" alt="">
+            <img class="profile__item--img" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
         </div>
         <div class="profile__item">
             <input class="profile__item--name" type="text" value="{{ $user->name }}" readonly>
