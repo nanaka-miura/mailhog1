@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment');
             $table->string('postal_code');
             $table->string('shipping_address');
-            $table->string('shipping_building');
+            $table->string('shipping_building')->nullable();
             $table->timestamps();
         });
     }

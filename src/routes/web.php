@@ -30,3 +30,6 @@ Route::post('/sell', [ProductController::class,'store'])->middleware(['auth']);
 Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/mypage', [UserController::class, 'profile'])->middleware(['auth']);
 Route::get('/purchase/{id}', [PurchaseController::class,'show'])->name('purchase');
+Route::get('/purchase/address/{id}',[PurchaseController::class,'showAddressChangeForm'])->name('purchase.address');
+Route::post('/purchase/address/{id}',[PurchaseController::class,'updateAddress'])->name('purchase.updateAddress');
+Route::post('/purchase/{id}',[PurchaseController::class,'purchase'])->name('purchase.complete');

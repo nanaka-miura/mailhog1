@@ -1,10 +1,13 @@
 .purchase__content {
+    max-width: 1540px;
+    padding: 100px;
+}
+
+.purchase__form {
     display: flex;
     gap: 5%;
     justify-content: space-between;
     margin: 0 auto;
-    max-width: 1540px;
-    padding: 100px;
 }
 
 .purchase__content--detail {
@@ -118,6 +121,7 @@
 
 .shipping-address__address {
     padding-left: 70px;
+    padding-right: 20px;
 }
 
 .shipping-address__address--item,
@@ -125,6 +129,7 @@
     border: none;
     font-weight: bold;
     outline: none;
+    width: 100%;
 }
 
 .purchase__content--confirmation {

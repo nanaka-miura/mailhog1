@@ -4,14 +4,15 @@
     justify-content: space-between;
     margin: 0 auto;
     max-width: 1540px;
-    padding: 40px 70px;
+    padding: 40px 100px;
 }
 
 .product__img,
 .product__detail {
     flex: 1;
 }
-.product__img img {
+
+.product__img--item {
     aspect-ratio: 1/1;
     object-fit: cover;
     margin-top: 40px;

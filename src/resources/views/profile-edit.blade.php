@@ -14,15 +14,15 @@
         <div class="form__group">
             <div class="profile__img">
                 @if ($user->image)
-                    <img class="profile__item--img" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
+                    <img class="profile__item--img" id="profile-image" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
                 @else
                     <div class="profile__item--default-img"></div>
                 @endif
                 <label class="form__file" for="file-upload">画像を選択する</label>
-                <input id="file-upload" class="form__file" type="file" name="image" accept="image/*" style="display: none;">
+                <input id="file-upload" class="form__file" type="file" name="image" accept="image/*" style="display: none;" onchange="previewImage(event)">
             </div>
             <div class="form__error">
-                @error('name')
+                @error('image')
                     {{ $message }}
                 @enderror
             </div>
@@ -68,4 +68,22 @@
         </div>
     </form>
 </div>
+
+
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const profileImage = document.getElementById('profile-image');
+            profileImage.src = e.target.result;
+            profileImage.style.display = 'block';
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 @endsection

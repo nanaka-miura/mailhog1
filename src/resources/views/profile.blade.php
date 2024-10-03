@@ -8,7 +8,11 @@
 <div class="mypage__content">
     <div class="profile">
         <div class="profile__item">
-            <img class="profile__item--img" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
+            @if ($user->image)
+                <img class="profile__item--img" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
+            @else
+                <div class="profile__item--default-img"></div>
+            @endif
         </div>
         <div class="profile__item">
             <input class="profile__item--name" type="text" value="{{ $user->name }}" readonly>
@@ -25,8 +29,10 @@
         <div class="product-list__item">
             @foreach ($products as $product)
                 <div class="product-list__item--box" id="content1">
-                    <img class="product-list__item--img" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-                    <p class="product-list__item--name">{{ $product->name }}</p>
+                    <a class="product-list__item--link" href="{{ route('products.show', $product->id) }}">
+                        <img class="product-list__item--img" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                        <p class="product-list__item--name">{{ $product->name }}</p>
+                    </a>
                 </div>
             @endforeach
         </div>

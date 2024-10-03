@@ -6,6 +6,9 @@
 
 @section('content')
 <div class="purchase__content">
+    <form action="{{ route('purchase.complete', ['id' => $product->id]) }}" method="post">
+        @csrf
+        <div class="purchase__form">
     <div class="purchase__content--detail">
         <div class="product__detail">
             <div class="product__detail--img">
@@ -32,35 +35,38 @@
         <div class="shipping-address">
             <div class="shipping-address__header">
                 <p class="shipping-address__header--item">配送先</p>
-                <a class="shipping-address__header--change" href="/purchase/address">変更する</a>
+                <a class="shipping-address__header--change" href="{{ route('purchase.address',['id' => $product->id]) }}">変更する</a>
             </div>
             <div class="shipping-address__post">
                 <p class="shipping-address__mark">〒</p>
-                <input class="shipping-address__item" type="text" value="{{ $user->postal_code }}" readonly>
+                <input class="shipping-address__item" type="text" value="{{ session('postal_code',$user->postal_code) }}" readonly>
             </div>
             <div class="shipping-address__address">
-                <input class="shipping-address__address--item" type="text" value="{{ $user->address }}" readonly>
-                <input class="shipping-address__address--building" type="text" value="{{ $user->building }}" readonly>
+                <input class="shipping-address__address--item" type="text" value="{{ session('address', $user->address) }}" readonly><br>
+                <input class="shipping-address__address--building" type="text" value="{{ session('building', $user->building) }}" readonly>
             </div>
         </div>
     </div>
-    <div class="purchase__content--confirmation">
-        <table class="table">
-            <tr class="table__row">
-                <th class="table__header">商品代金</th>
-                <td class="table__price">
-                    <p class="table__price--mark">&yen;</p>
-                    <p class="table__price--item">{{ number_format($product->price) }}</p>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <th class="table__header">支払い方法</th>
-                <td class="table__payment">
-                    <p class="table__payment--item" id="selected-payment"></p></td>
-            </tr>
-        </table>
-        <button class="purchase-button">購入する</button>
-    </div>
+        <div class="purchase__content--confirmation">
+            <table class="table">
+                <tr class="table__row">
+                    <th class="table__header">商品代金</th>
+                    <td class="table__price">
+                        <p class="table__price--mark">&yen;</p>
+                        <p class="table__price--item">{{ number_format($product->price) }}</p>
+                    </td>
+                </tr>
+                <tr class="table__row">
+                    <th class="table__header">支払い方法</th>
+                    <td class="table__payment">
+                        <p class="table__payment--item" id="selected-payment"></p></td>
+                </tr>
+            </table>
+            <button class="purchase-button">購入する</button>
+        </div>
+            </div>
+
+    </form>
 </div>
 
 <script>
