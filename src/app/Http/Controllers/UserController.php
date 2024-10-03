@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\Order;
 
 class UserController extends Controller
 {
@@ -38,6 +39,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $products = Product::where('user_id',$user->id)->get();
-        return view('profile',compact('user','products'));
+        $purchasedProducts = Order::where('user_id', $user->id)->with('product')->get();
+        return view('profile',compact('user','products', 'purchasedProducts'));
     }
 }

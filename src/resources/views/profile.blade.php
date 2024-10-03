@@ -35,6 +35,14 @@
                     </a>
                 </div>
             @endforeach
+            @foreach ($purchasedProducts as $order)
+                <div class="product-list__item--box" id="content2">
+                    <a class="product-list__item--link" href="{{ route('products.show', $order->product->id) }}">
+                        <img class="product-list__item--img" src="{{ asset('storage/' . $order->product->image) }}" alt="{{ $product->name }}">
+                        <p class="product-list__item--name">{{ $order->product->name }}</p>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
