@@ -8,6 +8,9 @@
 <div class="product__content">
     <div class="product__img">
         <img  class="product__img--item" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+        @if ($product->sold_out)
+            <span class="sold-label">Sold</span>
+        @endif
     </div>
     <div class="product__detail">
         <div class="product__detail__item">

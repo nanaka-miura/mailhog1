@@ -43,6 +43,7 @@
     max-width: 330px;
     padding: 0 10px;
     width: 25%;
+    position: relative;
 }
 
 .product-list__item--link {
@@ -54,6 +55,7 @@
     border-radius: 4px;
     object-fit: cover;
     width: 100%;
+    display: block;
 }
 
 .product-list__item--name-group {
@@ -62,10 +64,18 @@
 }
 
 .sold-label {
-    color: #FF0000;
+    aspect-ratio: 1;
+    background: #FF0000;
+    border-radius: 5px 0 0 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    color: #FFF;
+    font-size: 14px;
     font-weight: bold;
-    margin-right: 10px;
-    margin-top: 5px;
+    left: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 0px;
+    width: 80px;
 }
 
 .product-list__item--name {

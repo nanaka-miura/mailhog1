@@ -12,11 +12,30 @@
     flex: 1;
 }
 
+.product__img {
+    position: relative;
+}
+
 .product__img--item {
     aspect-ratio: 1/1;
     object-fit: cover;
     margin-top: 40px;
     width: 100%;
+    display: block;
+}
+
+.sold-label {
+    aspect-ratio: 1;
+    background: #FF0000;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    position: absolute;
+    top: 40px;
+    width: 130px;
+    z-index: 20;
 }
 
 .product__name {
