@@ -31,7 +31,9 @@
             <div class="product__category">
                 <p class="product__category--header">カテゴリー</p>
                 <div class="product__category--item">
-                    <p>{{ $product->category->name }}</p>
+                    @foreach($product->categories as $category)
+                        <p class="product__category--name">{{ $category->name }}</p>
+                    @endforeach
                 </div>
             </div>
             <div class="product__situation">

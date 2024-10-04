@@ -44,12 +44,17 @@ class ProductController extends Controller
 
         $product->save();
 
+        $selectedCategories = $request->input('categories');
+        if (!empty($selectedCategories)) {
+            $product->categories()->sync($selectedCategories);
+        }
+
         return redirect('/');
     }
 
     public function show($id)
     {
-        $product = Product::with('comments.user')->findOrFail($id);
+        $product = Product::with(['comments.user', 'categories'])->findOrFail($id);
         return view('product-detail', compact('product'));
     }
 
