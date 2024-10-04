@@ -40,16 +40,25 @@
             </div>
         </div>
         <div class="product__detail__comment">
-            <h3 class="comment__header">コメント(1)</h3>
-            <div class="comment__user">
-                <img class="comment__user--img" src="{{ asset('images/firstview.jpg') }}" alt="">
-                <p class="comment__user--name">admin</p>
-            </div>
-            <p class="comment__item">こちらにコメントが入ります</p>
-            <form class="comment__form" action="">
+            <h3 class="comment__header">コメント({{ $product->comments->count() }})</h3>
+                @if ($product->comments->isNotEmpty())
+                <div class="comment__user">
+                    @if($product->comments->last()->user->image)
+                        <img class="comment__user--img" src="{{ asset('storage/' . $product->comments->last()->user->image) }}" alt="{{ $product->comments->last()->user->name }}">
+                    @else
+                        <div class="comment__user--default-img"></div>
+                    @endif
+                    <p class="comment__user--name">{{ $product->comments->last()->user->name }}</p>
+                </div>
+                <p class="comment__item">{{ $product->comments->last()->content }}</p>
+                @else
+                <p>コメントはまだありません</p>
+                @endif
+            <form class="comment__form" action="{{ route('comments.store', ['id' => $product->id]) }}" method="post">
+                @csrf
                 <p class="comment__form--header">商品へのコメント</p>
-                <textarea class="comment__form--textarea" name="" row="5" cols="30"></textarea>
-                <button class="comment__form--button">コメントを送信する</button>
+                <textarea class="comment__form--textarea" name="content" row="5" cols="30"></textarea>
+                <button class="comment__form--button" type="submit">コメントを送信する</button>
             </form>
         </div>
     </div>

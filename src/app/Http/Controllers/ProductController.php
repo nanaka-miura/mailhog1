@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -48,7 +49,18 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        return view('product-detail',compact('product'));
+        $product = Product::with('comments.user')->findOrFail($id);
+        return view('product-detail', compact('product'));
+    }
+
+    public function storeComment(Request $request, $productId)
+    {
+        Comment::create([
+            'user_id' => Auth::id(),
+            'product_id' => $productId,
+            'content' => $request->input('content')
+        ]);
+
+        return redirect()->route('products.show',['id' => $productId]);
     }
 }

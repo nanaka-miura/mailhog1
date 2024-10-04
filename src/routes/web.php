@@ -33,3 +33,4 @@ Route::get('/purchase/{id}', [PurchaseController::class,'show'])->name('purchase
 Route::get('/purchase/address/{id}',[PurchaseController::class,'showAddressChangeForm'])->name('purchase.address')->middleware(['auth']);
 Route::post('/purchase/address/{id}',[PurchaseController::class,'updateAddress'])->name('purchase.updateAddress')->middleware(['auth']);
 Route::post('/purchase/{id}',[PurchaseController::class,'purchase'])->name('purchase.complete')->middleware(['auth']);
+Route::post('/products/{id}',[ProductController::class,"storeComment"])->name('comments.store')->middleware('auth');
