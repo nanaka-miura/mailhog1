@@ -15,7 +15,8 @@
             @foreach($products as $product)
             <div class="product-list__item--box" id="content1">
                 <a class="product-list__item--link" href="{{ route('products.show', $product->id) }}">
-                    <img class="product-list__item--img" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">                            @if ($product->sold_out)
+                    <img class="product-list__item--img" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                    @if ($product->sold_out)
                         <span class="sold-label">Sold</span>
                         @endif
                         <p class="product-list__item--name">{{ $product->name }}</p>

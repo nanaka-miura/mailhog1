@@ -60,4 +60,11 @@ class Product extends Model
     {
         return $this->likes()->count();
     }
+
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+    }
 }

@@ -10,14 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $userId = Auth::id();
+        $keyword = $request->input('keyword');
+        if ($keyword) {
+            $products = Product::keywordSearch($keyword)->get();
+        } else {
+            $userId = Auth::id();
+            $products = Product::where('user_id', '!=', $userId)->get();
+        }
 
-        $products = Product::where('user_id', '!=', $userId)->get();
-        $likeProducts = Auth::user()->likeProducts ?? collect();
+        $likeProducts = Auth::check() ? Auth::user()->likeProducts : collect();
 
-        return view('index',compact('products','likeProducts'));
+        return view('index', compact('products', 'likeProducts', 'keyword'));
     }
 
     public function create()

@@ -35,3 +35,4 @@ Route::post('/purchase/address/{id}',[PurchaseController::class,'updateAddress']
 Route::post('/purchase/{id}',[PurchaseController::class,'purchase'])->name('purchase.complete')->middleware(['auth']);
 Route::post('/products/{id}/comments',[ProductController::class,"storeComment"])->name('comments.store')->middleware('auth');
 Route::post('/products/{id}/like', [ProductController::class, 'like'])->name('products.like')->middleware('auth');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');

@@ -15,8 +15,8 @@
             <a class="header__logo" href="/">
                 <img src="{{ asset('images/logo.svg') }}" alt="logo">
             </a>
-            <form class="search-form" action="">
-                <input class="search-form__item--input" type="text" placeholder="なにをお探しですか？">
+            <form class="search-form" action="{{ route('products.index') }}" method="get">
+                <input class="search-form__item--input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
             </form>
             <div class="header__item header__item--button-group">
                 @if(Auth::check())
