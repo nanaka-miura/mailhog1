@@ -15,7 +15,9 @@ class ProductController extends Controller
         $userId = Auth::id();
 
         $products = Product::where('user_id', '!=', $userId)->get();
-        return view('index',compact('products'));
+        $likeProducts = Auth::user()->likeProducts ?? collect();
+
+        return view('index',compact('products','likeProducts'));
     }
 
     public function create()
