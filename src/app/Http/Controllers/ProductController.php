@@ -68,4 +68,20 @@ class ProductController extends Controller
 
         return redirect()->route('products.show',['id' => $productId]);
     }
+
+    public function like($id)
+    {
+        $product = Product::findOrFail($id);
+        $userId = Auth::id();
+
+        $like = $product->likes()->where('user_id', $userId)->first();
+
+        if ($like) {
+            $like->delete();
+        } else {
+            $product->likes()->create(['user_id' => $userId]);
+        }
+
+        return redirect()->route('products.show', ['id' => $id]);
+    }
 }

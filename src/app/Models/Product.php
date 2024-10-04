@@ -45,4 +45,19 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function isLikedByUser($userId)
+    {
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
+
+    public function likeCount()
+    {
+        return $this->likes()->count();
+    }
 }

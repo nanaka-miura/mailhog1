@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/product-detail.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 @endsection
 
 @section('content')
@@ -18,8 +19,21 @@
             <p class="product__brand">ブランド名</p>
             <p class="product__price">¥{{ number_format($product->price) }} (税込)</p>
             <div class="product__evaluation">
-                <p class="product__evaluation--star">星</p>
-                <p class="product__evaluation--comment">コメント</p>
+                <form class="like-form" action="{{ route('products.like', ['id' => $product->id]) }}" method="post">
+                    @csrf
+                    <button class="like-button" type="submit">
+                        @if ($product->isLikedByUser(Auth::id()))
+                        <i class="fas fa-star" style="color: #ff0000;"></i>
+                        @else
+                        <i class="far fa-star" style="color: #595959;"></i>
+                        @endif
+                    </button>
+                    <span class="like-count">{{ $product->likeCount() }}</span>
+                </form>
+                <div class="product__comments">
+                    <i class="far fa-comment" style="color: #595959;"></i>
+                    <span class="comment-count">{{ $product->comments->count() }}</span>
+                </div>
             </div>
             <form class="product__sell" action="{{ route('purchase', ['id' => $product->id]) }}" method="get">
                 @csrf
