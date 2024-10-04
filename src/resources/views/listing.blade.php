@@ -19,7 +19,11 @@
                     <label class="form__file--item" for="file-upload">画像を選択する</label>
                     <input id="file-upload" class="form__file--item" type="file" name="image" accept="image/*" style="display: none;">
                 </div>
-                <div class="form__error"></div>
+                <div class="form__error">
+                    @error('image')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
         </div>
         <div class="form__box">
@@ -34,7 +38,11 @@
                         <label class="form__checkbox--label" for="category-{{ $category->id }}">{{ $category->name }}</label>
                     @endforeach
                 </div>
-                <div class="form__error"></div>
+                <div class="form__error">
+                    @error('categories')
+                        {{ $message }}
+                    @enderror
+                </div>
             </div>
             <div class="form__group">
                 <span class="form__label">商品の状態</span>
@@ -60,7 +68,7 @@
             </div>
             <div class="form__group">
                 <span class="form__label">商品名</span>
-                <input class="form__input" type="text" name="name">
+                <input class="form__input" type="text" name="name" value="{{ old('name') }}">
                 <div class="form__error">
                     @error('name')
                         {{ $message }}
@@ -69,7 +77,7 @@
             </div>
             <div class="form__group">
                 <span class="form__label">商品の説明</span>
-                <textarea class="form__textarea" name="content" cols="50" rows="5"></textarea>
+                <textarea class="form__textarea" name="content" cols="50" rows="5">{{ old('content') }}</textarea>
                 <div class="form__error">
                     @error('content')
                         {{ $message }}
@@ -78,7 +86,7 @@
             </div>
             <div class="form__group">
                 <span class="form__label">販売価格</span>
-                <input class="form__input form__input--price" id="price-input" type="text" name="price">
+                <input class="form__input form__input--price" id="price-input" type="text" name="price" value="{{ old('price') }}">
                 <div class="form__error">
                     @error('price')
                         {{ $message }}
@@ -95,9 +103,11 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const priceInput = document.getElementById('price-input');
-        const listingForm = document.querySelector('.form'); // .formクラスを持つ要素を取得
+        const listingForm = document.querySelector('.form');
 
-        priceInput.value = "¥";
+        if (!priceInput.value.startsWith("¥")) {
+            priceInput.value = "¥" + priceInput.value;
+        }
 
         priceInput.addEventListener('input', function () {
             if (!priceInput.value.startsWith("¥")) {
@@ -106,11 +116,12 @@
         });
 
         listingForm.addEventListener('submit', function (e) {
-            // ¥記号を取り除いて数値として扱う
-            priceInput.value = priceInput.value.replace(/[^0-9]/g, '');
-            if (priceInput.value === '') {
-                e.preventDefault(); // 価格が入力されていない場合はフォームを送信しない
+            let priceValue = priceInput.value.replace(/[^0-9]/g, '');
+            if (priceValue === '') {
+                e.preventDefault();
                 alert('価格を入力してください。');
+            } else {
+                priceInput.value = priceValue;
             }
         });
     });

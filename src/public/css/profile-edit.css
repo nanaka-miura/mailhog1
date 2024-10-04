@@ -16,6 +16,10 @@
     max-width: 100vh;
 }
 
+.form__error {
+    color: #FF0000;
+}
+
 .profile__img {
     align-items: center;
     display: flex;

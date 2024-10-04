@@ -31,6 +31,11 @@
                     <option value="カード支払い">カード支払い</option>
                 </select>
             </div>
+            <div class="form__error">
+                @error('payment')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="shipping-address">
             <div class="shipping-address__header">
@@ -39,11 +44,21 @@
             </div>
             <div class="shipping-address__post">
                 <p class="shipping-address__mark">〒</p>
-                <input class="shipping-address__item" type="text" value="{{ session('postal_code',$user->postal_code) }}" readonly>
+                <input class="shipping-address__item" type="text" name="postal_code" value="{{ session('postal_code',$user->postal_code) }}" readonly>
+            </div>
+            <div class="form__error">
+                @error('postal_code')
+                {{ $message }}
+                @enderror
             </div>
             <div class="shipping-address__address">
-                <input class="shipping-address__address--item" type="text" value="{{ session('address', $user->address) }}" readonly><br>
-                <input class="shipping-address__address--building" type="text" value="{{ session('building', $user->building) }}" readonly>
+                <input class="shipping-address__address--item" type="text" value="{{ session('address', $user->address) }}" name="address" readonly><br>
+                <input class="shipping-address__address--building" type="text" value="{{ session('building', $user->building) }}" name="building" readonly>
+            </div>
+            <div class="form__error">
+                @error('address')
+                {{ $message }}
+                @enderror
             </div>
         </div>
     </div>

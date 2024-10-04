@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Http\Requests\PurchaseRequest;
+use App\Http\Requests\AddressRequest;
+
 
 class PurchaseController extends Controller
 {
@@ -20,7 +23,7 @@ class PurchaseController extends Controller
         return view('purchase', compact('product','user', 'postal_code', 'address', 'building', 'id'));
     }
 
-    public function updateAddress(Request $request, $id)
+    public function updateAddress(AddressRequest $request, $id)
     {
         session([
             'postal_code' => $request->input('postal_code'),
@@ -31,7 +34,7 @@ class PurchaseController extends Controller
         return redirect()->route('purchase',['id' => $id]);
     }
 
-    public function purchase(Request $request, $id)
+    public function purchase(PurchaseRequest $request, $id)
     {
         $product = Product::findOrFail($id);
         $user = Auth::user();

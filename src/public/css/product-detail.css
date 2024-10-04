@@ -63,8 +63,6 @@
     margin-top: 15px;
 }
 
-
-
 .like-form {
     text-align: center;
 }
@@ -97,6 +95,10 @@
     text-align: center;
 }
 
+.like-button i {
+    transition: color 0.1s;
+}
+
 .product__sell {
     margin-top: 15px;
     width: 100%;
@@ -107,6 +109,7 @@
     border: none;
     border-radius: 4px;
     color: #FFF;
+    font-weight: bold;
     padding: 7px;
     width: 100%;
 }
@@ -220,12 +223,12 @@
     border: none;
     border-radius: 4px;
     color: #FFF;
+    font-weight: bold;
     margin-top: 20px;
     padding: 7px;
     width: 100%;
 }
 
-
-.like-button i {
-    transition: color 0.3s;
+.form__error {
+    color: #FF0000;
 }

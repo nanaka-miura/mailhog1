@@ -7,6 +7,9 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CommentRequest;
+use App\Http\Requests\ExhibitionRequest;
+
 
 class ProductController extends Controller
 {
@@ -31,7 +34,7 @@ class ProductController extends Controller
         return view('listing',compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
         $imagePath = $request->file('image')->store('products', 'public');
 
@@ -65,7 +68,7 @@ class ProductController extends Controller
         return view('product-detail', compact('product'));
     }
 
-    public function storeComment(Request $request, $productId)
+    public function storeComment(CommentRequest $request, $productId)
     {
         Comment::create([
             'user_id' => Auth::id(),

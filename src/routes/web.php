@@ -21,6 +21,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', [ProductController::class,'index']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'doLogin']);
 Route::get('/register', [AuthController::class,'register']);
 Route::post('/register', [AuthController::class, 'store']);
 Route::get('/mypage/profile', [UserController::class,'profileEdit'])->middleware(['auth']);
