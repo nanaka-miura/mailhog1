@@ -16,14 +16,19 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
+        $userId = Auth::id();
+        
         if ($keyword) {
             $products = Product::keywordSearch($keyword)->get();
-        } else {
-            $userId = Auth::id();
-            $products = Product::where('user_id', '!=', $userId)->get();
-        }
 
-        $likeProducts = Auth::check() ? Auth::user()->likeProducts : collect();
+            $likeProducts = Product::whereHas('likes', function($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->where('name', 'LIKE', "%{$keyword}%")->get();
+        } else {
+            $products = Product::where('user_id', '!=', $userId)->get();
+            $likeProducts = Auth::check() ? Auth::user()->likeProducts : collect();
+        }
 
         return view('index', compact('products', 'likeProducts', 'keyword'));
     }

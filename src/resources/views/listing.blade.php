@@ -13,8 +13,7 @@
         @csrf
         <div class="form__box">
             <div class="form__group">
-                <span class="form__label">商品画像
-                </span>
+                <span class="form__label">商品画像</span>
                 <div class="form__file">
                     <label class="form__file--item" for="file-upload">画像を選択する</label>
                     <input id="file-upload" class="form__file--item" type="file" name="image" accept="image/*" style="display: none;">
@@ -34,7 +33,8 @@
                 <span class="form__label">カテゴリー</span>
                 <div class="form__checkbox__group">
                     @foreach($categories as $category)
-                        <input class="form__checkbox" type="checkbox" id="category-{{ $category->id }}" name="categories[]" value="{{ $category->id }}">
+                        <input class="form__checkbox" type="checkbox" id="category-{{ $category->id }}" name="categories[]" value="{{ $category->id }}" 
+                        {{ (is_array(old('categories')) && in_array($category->id, old('categories'))) ? 'checked' : '' }}>
                         <label class="form__checkbox--label" for="category-{{ $category->id }}">{{ $category->name }}</label>
                     @endforeach
                 </div>
@@ -49,10 +49,10 @@
                 <div class="form__select">
                     <select class="form__select--input" name="condition" required>
                         <option value="" hidden>選択してください</option>
-                        <option value="良好">良好</option>
-                        <option value="目立った傷や汚れなし">目立った傷や汚れなし</option>
-                        <option value="やや傷や汚れあり">やや傷や汚れあり</option>
-                        <option value="状態が悪い">状態が悪い</option>
+                        <option value="良好" {{ old('condition') == '良好' ? 'selected' : '' }}>良好</option>
+                        <option value="目立った傷や汚れなし" {{ old('condition') == '目立った傷や汚れなし' ? 'selected' : '' }}>目立った傷や汚れなし</option>
+                        <option value="やや傷や汚れあり" {{ old('condition') == 'やや傷や汚れあり' ? 'selected' : '' }}>やや傷や汚れあり</option>
+                        <option value="状態が悪い" {{ old('condition') == '状態が悪い' ? 'selected' : '' }}>状態が悪い</option>
                     </select>
                 </div>
                 <div class="form__error">

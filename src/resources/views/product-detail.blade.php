@@ -73,7 +73,7 @@
             <form class="comment__form" action="{{ route('comments.store', ['id' => $product->id]) }}" method="post">
                 @csrf
                 <p class="comment__form--header">商品へのコメント</p>
-                <textarea class="comment__form--textarea" name="content" row="5" cols="30"></textarea>
+                <textarea class="comment__form--textarea" name="content" row="5" cols="30">{{ old('content') }}</textarea>
                 <div class="form__error">
                         @error('content')
                             {{ $message }}
