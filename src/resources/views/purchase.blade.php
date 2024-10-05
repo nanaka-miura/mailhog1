@@ -77,7 +77,7 @@
                         <p class="table__payment--item" id="selected-payment"></p></td>
                 </tr>
             </table>
-            <button class="purchase-button">購入する</button>
+            <button class="purchase-button" type="submit">購入する</button>
         </div>
             </div>
 

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Requests\AddressRequest;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 
 class PurchaseController extends Controller
@@ -37,29 +39,72 @@ class PurchaseController extends Controller
     public function purchase(PurchaseRequest $request, $id)
     {
         $product = Product::findOrFail($id);
-        $user = Auth::user();
+    $user = Auth::user();
 
-        if ($product->sold_out) {
-            return redirect()->route('purchase',['id' => $id]);
-        }
+    if ($product->sold_out) {
+        return redirect()->route('purchase',['id' => $id]);
+    }
 
-        $order = new Order();
-        $order->user_id = $user->id;
-        $order->product_id = $product->id;
-        $order->postal_code = session('postal_code', $user->postal_code);
-        $order->shipping_address = session('address', $user->address);
-        $order->shipping_building = session('building', $user->building);
-        $order->purchase_date = now();
-        $order->payment = $request->input('payment');
+    $order = new Order();
+    $order->user_id = $user->id;
+    $order->product_id = $product->id;
+    $order->postal_code = session('postal_code', $user->postal_code);
+    $order->shipping_address = session('address', $user->address);
+    $order->shipping_building = session('building', $user->building);
+    $order->purchase_date = now();
+    $order->payment = $request->input('payment');
+    $order->save();
 
-        $product->sold_out = true;
+    $product->sold_out = true;
+    $product->save();
 
-        $order->save();
-        $product->save();
+    if ($request->input('payment') === 'カード支払い') {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
-        session()->forget(['postal_code','address','building']);
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => $product->name,
+                    ],
+                    'unit_amount' => $product->price * 1
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => env('APP_URL') . '/mypage',
+            'cancel_url' => env('APP_URL') . '/mypage',
+        ]);
 
-        return redirect('/');
+        return redirect($session->url);
+
+    } elseif ($request->input('payment') === 'コンビニ払い') {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $session = Session::create([
+            'payment_method_types' => ['konbini'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => $product->name,
+                    ],
+                    'unit_amount' => $product->price * 1
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => env('APP_URL') . '/mypage',
+            'cancel_url' => env('APP_URL') . '/mypage',
+        ]);
+
+        $session->metadata['order_id'] = $order->id;
+        $session->save();
+
+        return redirect($session->url);
+    }
     }
 
     public function showAddressChangeForm($id)
@@ -75,5 +120,4 @@ class PurchaseController extends Controller
         $order = Order::where('product_id', $id)->latest()->first();
         return redirect('/');
     }
-
 }
