@@ -24,20 +24,6 @@
     display: block;
 }
 
-.sold-label {
-    aspect-ratio: 1;
-    background: #FF0000;
-    clip-path: polygon(0 0, 100% 0, 0 100%);
-    color: #FFF;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 20px;
-    position: absolute;
-    top: 40px;
-    width: 130px;
-    z-index: 20;
-}
-
 .product__name {
     font-size: 32px;
     margin-bottom: 3px;
@@ -110,6 +96,16 @@
     border-radius: 4px;
     color: #FFF;
     font-weight: bold;
+    padding: 7px;
+    width: 100%;
+}
+
+.product__sell--soldout-button {
+    background: #FF0000;
+    border-radius: 4px;
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
     padding: 7px;
     width: 100%;
 }
@@ -231,4 +227,39 @@
 
 .form__error {
     color: #FF0000;
+}
+
+@media screen and (min-width:768px) and (max-width:850px) {
+    .profile__item:nth-of-type(2) {
+        width: 30%;
+    }
+
+    .profile__item--name {
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .profile__item--link {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:850px) {
+    .product__category--header,
+    .product__situation--header {
+        font-size: 14px;
+        width: 30%;
+    }
+
+    .product__category--item,
+    .product__situation--item {
+        font-size: 14px;
+        width: 60%;
+    }
+
+    .product__category,
+    .product__situation {
+        justify-content: space-between;
+        gap: 10px;
+    }
 }

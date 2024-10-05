@@ -17,8 +17,12 @@
 .product__detail {
     border-bottom: 1px solid #000;
     display: flex;
-    gap: 10%;
     padding-bottom: 40px;
+}
+
+.product__detail--group {
+    padding-left: 20px;
+    max-width: 100%;
 }
 
 .product__detail--img--item {
@@ -31,7 +35,7 @@
     border: none;
     font-size: 26px;
     font-weight: bold;
-    outline: none;
+    width: 100%;
 }
 
 .product__detail--price {
@@ -81,7 +85,6 @@
     padding-right: 50px;
     width: 100%;
 }
-
 
 .shipping-address {
     border-bottom: 1px solid #000;
@@ -204,4 +207,32 @@
 .form__error {
     color: #FF0000;
     padding-left: 70px;
+}
+
+@media screen and (max-width:850px) {
+    .purchase__content {
+        padding: 70px 50px;
+    }
+
+    .purchase__content--detail {
+        width: 50%;
+    }
+
+    .payment__item {
+        padding: 0 70px;
+        position: relative;
+        width: 100%;
+    }
+
+    .payment__item::after {
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 10px solid #5F5F5F;
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        right: 75px;
+        top: 50%;
+        transform: translateY(-10%);
+}
 }

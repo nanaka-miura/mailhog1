@@ -113,3 +113,18 @@
 #tab2:checked~.product-list__item #content2 {
     display: block;
 }
+
+@media screen and (max-width:850px) {
+    .profile__item:nth-of-type(2) {
+        width: 30%;
+    }
+
+    .profile__item--name {
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .profile__item--link {
+        font-size: 14px;
+    }
+}

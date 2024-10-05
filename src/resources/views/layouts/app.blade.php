@@ -13,7 +13,7 @@
     <header class="header">
         <div class="header__inner">
             <a class="header__logo" href="/">
-                <img src="{{ asset('images/logo.svg') }}" alt="logo">
+                <img class="header__logo--img" src="{{ asset('images/logo.svg') }}" alt="logo">
             </a>
             <form class="search-form" action="{{ route('products.index') }}" method="get">
                 <input class="search-form__item--input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">

@@ -9,9 +9,6 @@
 <div class="product__content">
     <div class="product__img">
         <img  class="product__img--item" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-        @if ($product->sold_out)
-            <span class="sold-label">Sold</span>
-        @endif
     </div>
     <div class="product__detail">
         <div class="product__detail__item">
@@ -37,7 +34,11 @@
             </div>
             <form class="product__sell" action="{{ route('purchase', ['id' => $product->id]) }}" method="get">
                 @csrf
+                @if ($product->sold_out)
+                <p class="product__sell--soldout-button" disabled>Sold Out</p>
+                @else
                 <button class="product__sell--button">購入手続きへ</button>
+                @endif
             </form>
             <h3 class="product__explanation__header">商品説明</h3>
             <p class="product__explanation--item">{{ $product->content }}</p>
