@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Http\Request;
+use Laravel\Fortify\Http\Controllers\VerifyEmailController;
 
 
 /*
@@ -38,3 +39,9 @@ Route::post('/purchase/{id}',[PurchaseController::class,'purchase'])->name('purc
 Route::post('/products/{id}/comments',[ProductController::class,"storeComment"])->name('comments.store')->middleware('auth');
 Route::post('/products/{id}/like', [ProductController::class, 'like'])->name('products.like')->middleware('auth');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware(['auth'])->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+    ->middleware(['signed'])
+    ->name('verification.verify');

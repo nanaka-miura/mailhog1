@@ -23,6 +23,13 @@
     width: 100%;
 }
 
+.alert-success {
+    color: #FF0000;
+    margin: 0 auto;
+    max-width: 100vh;
+    padding: 10px 0;
+}
+
 .form {
     margin: 0 auto;
     max-width: 100vh;

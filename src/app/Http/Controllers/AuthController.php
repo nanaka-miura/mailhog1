@@ -22,9 +22,8 @@ class AuthController extends Controller
     public function store(RegisterRequest $request)
     {
         $user = $this->creator->create($request->all());
-        Auth::login($user);
-
-        return redirect('/mypage/profile');
+        $user->sendEmailVerificationNotification();
+        return redirect('/register')->with('message', '登録が完了しました。認証メールを送信しましたのでご確認ください。');
     }
 
     public function register()
@@ -39,12 +38,29 @@ class AuthController extends Controller
 
     public function doLogin(LoginRequest $request)
     {
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->intended('/');
-        }
 
+    $credentials = $request->only('email', 'password');
+
+    $user = \App\Models\User::where('email', $credentials['email'])->first();
+
+    if ($user && !$user->hasVerifiedEmail()) {
+        $this->sendVerificationEmail($user);
         return redirect()->back()->withErrors([
-            'email' => 'ログイン情報が登録されていません'
+            'email' => 'メール認証が必要です。認証メールを再送信しました。'
         ]);
+    }
+
+    if (Auth::attempt($credentials)) {
+        return redirect()->intended('/');
+    }
+
+    return redirect()->back()->withErrors([
+        'email' => 'ログイン情報が登録されていません'
+    ]);
+    }
+
+    protected function sendVerificationEmail($user)
+    {
+        $user->sendEmailVerificationNotification();
     }
 }

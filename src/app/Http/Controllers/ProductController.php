@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $keyword = $request->input('keyword');
         $userId = Auth::id();
-        
+
         if ($keyword) {
             $products = Product::keywordSearch($keyword)->get();
 
