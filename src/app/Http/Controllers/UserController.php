@@ -36,11 +36,12 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
         $user = Auth::user();
+        $tab = $request->get('tab', 'listed');
         $products = Product::where('user_id',$user->id)->get();
         $purchasedProducts = Order::where('user_id', $user->id)->with('product')->get();
-        return view('profile',compact('user','products', 'purchasedProducts'));
+        return view('profile',compact('user', 'tab', 'products', 'purchasedProducts'));
     }
 }

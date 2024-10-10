@@ -66,8 +66,7 @@
     text-decoration: none;
 }
 
-@media screen and (min-width:768px) and (max-width:850px) {
-
+@media screen and (max-width:850px) {
     .header__inner {
         padding: 0 30px;
     }

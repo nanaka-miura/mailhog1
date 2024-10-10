@@ -19,25 +19,130 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+        $userIds = DB::table('users')->pluck('id');
 
-        for ($i = 0; $i < 10; $i++)
-        {
-            $imageUrl = 'https://via.placeholder.com/150';
-            $imagePath = 'products/' . uniqid() . '.jpg';
+        $products = [
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => ['1', '12', '5'],
+                'name' => '腕時計',
+                'content' => 'スタイリッシュなデザインのメンズ腕時計',
+                'condition' => '良好',
+                'price' => '15000',
+                'image' => 'products/gegjru0dt7CyUrcYipJ1mqOYlcOw2MB6fMcO4ihH.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => '2',
+                'name' => 'HDD',
+                'content' => '高速で信頼性の高いハードデ ィスク',
+                'condition' => '目立った傷や汚れなし',
+                'price' => '5000',
+                'image' => 'products/NpHZby7LSxTg4vmOg8pv6qywGHNshdAlxfprLBtU.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => '10',
+                'name' => '玉ねぎ3束',
+                'content' => '新鮮な玉ねぎ3束のセット',
+                'condition' => 'やや傷や汚れあり',
+                'price' => '300',
+                'image' => 'products/5KdnRuj1jSqBaSTEifqFRHB5GCk1001zaqZQAHRE.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => ['1', '5'],
+                'name' => '革靴',
+                'content' => 'クラシックなデザインの革靴',
+                'condition' => '状態が悪い',
+                'price' => '4000',
+                'image' => 'products/mQSDXK8a5yMC1GNmPLp4mBUSbx2kmF9iu5puylHf.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => '2',
+                'name' => 'ノートPC',
+                'content' => '高性能なノートパソコン',
+                'condition' => '良好',
+                'price' => '45000',
+                'image' => 'products/jPtK3RPiXbU14MAq9vy3I9b4Rg0ojV35xCnVNM2I.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => '13',
+                'name' => 'マイク',
+                'content' => '高音質のレコーディング用マイク',
+                'condition' => '目立った傷や汚れなし',
+                'price' => '8000',
+                'image' => 'products/C8C7KSAhaCZGtBqvlimuwMdkNZ366MUhUqM3Pbdf.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => ['1', '4'],
+                'name' => 'ショルダーバッグ',
+                'content' => 'おしゃれなショルダーバッグ',
+                'condition' => 'やや傷や汚れあり',
+                'price' => '3500',
+                'image' => 'products/iknEVLgOLzL8sgEddHC85K9NdbqNdfgVrDBCTggI.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => '10',
+                'name' => 'タンブラー',
+                'content' => '使いやすいタンブラー',
+                'condition' => '状態が悪い',
+                'price' => '500',
+                'image' => 'products/JVIGUeZwwNghTE7wHfxsdxHEU6JRutaLF6FyhoSu.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => '10',
+                'name' => 'コーヒーミル',
+                'content' => '手動のコーヒーミル',
+                'condition' => '良好',
+                'price' => '4000',
+                'image' => 'products/5nt3KJGI1zeJRkZ8njQL64ow8gSnVeDYYipKMtLh.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+            [
+                'user_id' => $userIds->random(),
+                'category_id' => '6',
+                'name' => 'メイクセット',
+                'content' => '便利なメイクアップセット',
+                'condition' => '目立った傷や汚れなし',
+                'price' => '2500',
+                'image' => 'products/dZFHFBJuC1KAIQtsRskpyTZAWry5UqGUelMhcGGe.jpg',
+                'sold_out' => rand(0, 1) ? true : false,
+            ],
+        ];
 
-            file_put_contents(public_path('storage/' . $imagePath), file_get_contents($imageUrl));
-
-            Product::create([
-                'user_id' => rand(1,2),
-                'category_id' => rand(1, 5),
-                'name' => $faker->word,
-                'content' => $faker->sentence,
-                'condition' => $faker->word,
-                'price' => $faker->numberBetween(1000, 10000),
-                'image' => $imagePath,
-                'sold_out' => false,
+        foreach ($products as $productData) {
+            $productId = DB::table('products')->insertGetId([
+                'user_id' => $productData['user_id'],
+                'category_id' => is_array($productData['category_id']) ? $productData['category_id'][0] : $productData['category_id'],
+                'name' => $productData['name'],
+                'content' => $productData['content'],
+                'condition' => $productData['condition'],
+                'price' => $productData['price'],
+                'image' => $productData['image'],
+                'sold_out' => $productData['sold_out'],
             ]);
+
+            $categoryIds = (array) $productData['category_id'];
+            foreach ($categoryIds as $categoryId) {
+                DB::table('category_product')->insert([
+                    'product_id' => $productId,
+                    'category_id' => $categoryId,
+                ]);
+            }
         }
-}
+    }
 }

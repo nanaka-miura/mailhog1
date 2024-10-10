@@ -229,7 +229,7 @@
     color: #FF0000;
 }
 
-@media screen and (min-width:768px) and (max-width:850px) {
+@media screen and (max-width:850px) {
     .profile__item:nth-of-type(2) {
         width: 30%;
     }
@@ -242,9 +242,7 @@
     .profile__item--link {
         font-size: 14px;
     }
-}
 
-@media screen and (max-width:850px) {
     .product__category--header,
     .product__situation--header {
         font-size: 14px;

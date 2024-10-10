@@ -21,27 +21,32 @@ use Laravel\Fortify\Http\Controllers\VerifyEmailController;
 |
 */
 
-Route::get('/', [ProductController::class,'index']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mypage/profile', [UserController::class, 'profileEdit']);
+    Route::post('/mypage/profile', [UserController::class, 'update']);
+    Route::get('/sell', [ProductController::class, 'create']);
+    Route::post('/sell', [ProductController::class, 'store']);
+    Route::get('/mypage', [UserController::class, 'profile']);
+    Route::get('/purchase/{id}', [PurchaseController::class, 'show'])->name('purchase');
+    Route::get('/purchase/address/{id}', [PurchaseController::class, 'showAddressChangeForm'])->name('purchase.address');
+    Route::post('/purchase/address/{id}', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');
+    Route::post('/purchase/{id}', [PurchaseController::class, 'purchase'])->name('purchase.complete');
+    Route::post('/products/{id}/comments', [ProductController::class, "storeComment"])->name('comments.store');
+    Route::post('/products/{id}/like', [ProductController::class, 'like'])->name('products.like');
+});
+
+Route::get('/', [ProductController::class, 'index']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'doLogin']);
-Route::get('/register', [AuthController::class,'register']);
+Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'store']);
-Route::get('/mypage/profile', [UserController::class,'profileEdit'])->middleware(['auth']);
-Route::post('/mypage/profile', [UserController::class,'update'])->middleware(['auth']);
-Route::get('/sell', [ProductController::class,'create'])->middleware(['auth']);
-Route::post('/sell', [ProductController::class,'store'])->middleware(['auth']);
-Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/mypage', [UserController::class, 'profile'])->middleware(['auth']);
-Route::get('/purchase/{id}', [PurchaseController::class,'show'])->name('purchase')->middleware(['auth']);
-Route::get('/purchase/address/{id}',[PurchaseController::class,'showAddressChangeForm'])->name('purchase.address')->middleware(['auth']);
-Route::post('/purchase/address/{id}',[PurchaseController::class,'updateAddress'])->name('purchase.updateAddress')->middleware(['auth']);
-Route::post('/purchase/{id}',[PurchaseController::class,'purchase'])->name('purchase.complete')->middleware(['auth']);
-Route::post('/products/{id}/comments',[ProductController::class,"storeComment"])->name('comments.store')->middleware('auth');
-Route::post('/products/{id}/like', [ProductController::class, 'like'])->name('products.like')->middleware('auth');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware(['auth'])->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['signed'])
     ->name('verification.verify');
+
+Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');

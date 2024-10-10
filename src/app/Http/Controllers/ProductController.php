@@ -17,21 +17,39 @@ class ProductController extends Controller
     {
         $keyword = $request->input('keyword');
         $userId = Auth::id();
+        $tab = $request->input('tab', 'recommended');
 
-        if ($keyword) {
-            $products = Product::keywordSearch($keyword)->get();
+        $likeProducts = collect();
+        $products = collect();
 
-            $likeProducts = Product::whereHas('likes', function($query) use ($userId) {
-                $query->where('user_id', $userId);
-            })
-            ->where('name', 'LIKE', "%{$keyword}%")->get();
+        if ($tab === 'mylist' && !Auth::check()) {
+            $products = collect();
+            $likeProducts = collect();
         } else {
-            $products = Product::where('user_id', '!=', $userId)->get();
-            $likeProducts = Auth::check() ? Auth::user()->likeProducts : collect();
+            if (Auth::check() && $tab === 'mylist') {
+            $likeProducts = Auth::user()->likeProducts->filter(function  ($product) use ($userId) {
+                return $product->user_id !== $userId;
+            });
         }
 
-        return view('index', compact('products', 'likeProducts', 'keyword'));
+        if ($keyword) {
+            $products = Product::keywordSearch($keyword)->where('user_id', '!=', $userId)->get();
+
+            if (Auth::check()) {
+                $likeProducts = $likeProducts->filter(function ($product) use ($keyword) {
+                    return stripos($product->name, $keyword) !== false;
+                });
+            }
+        } else {
+            if (Auth::check()) {
+                $products = Product::where('user_id', '!=', $userId)->get();
+            } else {
+                $products = Product::all();
+            }
+        }
     }
+    return view('index', compact('products', 'likeProducts', 'keyword', 'tab'));
+}
 
     public function create()
     {

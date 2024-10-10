@@ -29,8 +29,9 @@ class PurchaseController extends Controller
     {
         session([
             'postal_code' => $request->input('postal_code'),
-            'address' => $request->input('address'),
-            'building' => $request->input('building')
+            'shipping_address' => $request->input('address'),
+            'shipping_building' => $request->input('building'),
+                    'selected_payment' => session('selected_payment'),
         ]);
 
         return redirect()->route('purchase',['id' => $id]);
@@ -39,26 +40,28 @@ class PurchaseController extends Controller
     public function purchase(PurchaseRequest $request, $id)
     {
         $product = Product::findOrFail($id);
-    $user = Auth::user();
+        $user = Auth::user();
 
-    if ($product->sold_out) {
-        return redirect()->route('purchase',['id' => $id]);
-    }
+        session(['selected_payment' => $request->input('payment')]);
 
-    $order = new Order();
-    $order->user_id = $user->id;
-    $order->product_id = $product->id;
-    $order->postal_code = session('postal_code', $user->postal_code);
-    $order->shipping_address = session('address', $user->address);
-    $order->shipping_building = session('building', $user->building);
-    $order->purchase_date = now();
-    $order->payment = $request->input('payment');
-    $order->save();
+        if ($product->sold_out) {
+            return redirect()->route('purchase',['id' => $id]);
+        }
 
-    $product->sold_out = true;
-    $product->save();
+        $order = new Order();
+        $order->user_id = $user->id;
+        $order->product_id = $product->id;
+        $order->postal_code = session('postal_code', $user->postal_code);
+        $order->shipping_address = session('shipping_address', $user->address);
+        $order->shipping_building = session('shipping_building', $user->building);
+        $order->purchase_date = now();
+        $order->payment = $request->input('payment');
+        $order->save();
 
-    if ($request->input('payment') === 'カード支払い') {
+        $product->sold_out = true;
+        $product->save();
+
+        if ($request->input('payment') === 'カード支払い') {
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         $session = Session::create([
@@ -118,6 +121,11 @@ class PurchaseController extends Controller
     public function complete($id)
     {
         $order = Order::where('product_id', $id)->latest()->first();
-        return redirect('/');
+        session()->forget('selected_payment');
+        session()->forget('postal_code');
+        session()->forget('shipping_address');
+        session()->forget('shipping_building');
+
+        return redirect('/mypage');
     }
 }

@@ -7,9 +7,9 @@
 @section('content')
 <div class="product-list__content">
     <div class="product-list__tab">
-        <input class="product-list__tab--input" type="radio" name="tab" id="tab1" checked>
+        <input class="product-list__tab--input" type="radio" name="tab" id="tab1" {{ $tab === 'recommended' ? 'checked' : '' }} onclick="window.location.href='{{ url('/') }}'">
         <label class="product-list__tab--label" for="tab1">おすすめ</label>
-        <input class="product-list__tab--input" type="radio" name="tab" id="tab2">
+        <input class="product-list__tab--input" type="radio" name="tab" id="tab2" {{ $tab === 'mylist' ? 'checked' : '' }}  onclick="window.location.href='{{ url('/?tab=mylist&keyword=' . $keyword ) }}'">
         <label class="product-list__tab--label" for="tab2">マイリスト</label>
         <div class="product-list__item">
             @foreach($products as $product)
@@ -23,7 +23,6 @@
                 </a>
             </div>
             @endforeach
-            @if($likeProducts->isNotEmpty())
             @foreach($likeProducts as $likeProduct)
             <div class="product-list__item--box" id="content2">
                 <a class="product-list__item--link" href="{{ route('products.show', $likeProduct->id) }}">
@@ -33,9 +32,8 @@
                         @endif
                     <p class="product-list__item--name">{{ $likeProduct->name }}</p>
                 </a>
-                </div>
+            </div>
             @endforeach
-            @endif
         </div>
     </div>
 </div>
