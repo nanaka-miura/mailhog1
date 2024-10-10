@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Product;
+use Database\Seeders\DatabaseSeeder;
+
 
 class LikeTest extends TestCase
 {

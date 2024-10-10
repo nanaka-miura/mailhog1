@@ -30,7 +30,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => '良好',
                 'price' => '15000',
                 'image' => 'products/gegjru0dt7CyUrcYipJ1mqOYlcOw2MB6fMcO4ihH.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -40,7 +40,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => '目立った傷や汚れなし',
                 'price' => '5000',
                 'image' => 'products/NpHZby7LSxTg4vmOg8pv6qywGHNshdAlxfprLBtU.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -50,7 +50,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => 'やや傷や汚れあり',
                 'price' => '300',
                 'image' => 'products/5KdnRuj1jSqBaSTEifqFRHB5GCk1001zaqZQAHRE.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -60,7 +60,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => '状態が悪い',
                 'price' => '4000',
                 'image' => 'products/mQSDXK8a5yMC1GNmPLp4mBUSbx2kmF9iu5puylHf.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -70,7 +70,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => '良好',
                 'price' => '45000',
                 'image' => 'products/jPtK3RPiXbU14MAq9vy3I9b4Rg0ojV35xCnVNM2I.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -80,7 +80,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => '目立った傷や汚れなし',
                 'price' => '8000',
                 'image' => 'products/C8C7KSAhaCZGtBqvlimuwMdkNZ366MUhUqM3Pbdf.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -90,7 +90,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => 'やや傷や汚れあり',
                 'price' => '3500',
                 'image' => 'products/iknEVLgOLzL8sgEddHC85K9NdbqNdfgVrDBCTggI.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -100,7 +100,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => '状態が悪い',
                 'price' => '500',
                 'image' => 'products/JVIGUeZwwNghTE7wHfxsdxHEU6JRutaLF6FyhoSu.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -110,7 +110,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => '良好',
                 'price' => '4000',
                 'image' => 'products/5nt3KJGI1zeJRkZ8njQL64ow8gSnVeDYYipKMtLh.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
             [
                 'user_id' => $userIds->random(),
@@ -120,7 +120,7 @@ class ProductsTableSeeder extends Seeder
                 'condition' => '目立った傷や汚れなし',
                 'price' => '2500',
                 'image' => 'products/dZFHFBJuC1KAIQtsRskpyTZAWry5UqGUelMhcGGe.jpg',
-                'sold_out' => rand(0, 1) ? true : false,
+                'sold_out' => false,
             ],
         ];
 

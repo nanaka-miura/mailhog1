@@ -43,7 +43,7 @@ class PurchaseTest extends TestCase
 
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
-          Mockery::mock('alias:Stripe\Checkout\Session')
+        Mockery::mock('alias:Stripe\Checkout\Session')
             ->shouldReceive('create')
             ->once()
             ->andReturn((object) ['url' => 'http://localhost/mypage']);
@@ -57,8 +57,6 @@ class PurchaseTest extends TestCase
         ]);
 
             $response->assertRedirect('http://localhost/mypage');
-
-        
 
         $this->assertDatabaseHas('orders', [
             'user_id' => $user->id,
