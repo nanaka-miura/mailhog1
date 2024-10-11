@@ -20,6 +20,8 @@ Lavaral環境構築
 ・PHP 7.4.9  
 ・Laravel 8.83.27  
 ・MySQL 8.0.26  
+・nginx 1.21.1  
+・MailHog latest  
 
 ## ER図
 ![er](https://github.com/user-attachments/assets/c66d0511-5706-4380-a066-d4a83e72ff3e)
