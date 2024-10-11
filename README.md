@@ -13,7 +13,6 @@ Lavaral環境構築
 6.php artisan db:seed 
 7.php artisan test  
 8.php artisan storage:link  
-9.docker run -d --name mailhog -p 1025:1025 -p 8025:8025 mailhog/mailhog
 
 
 ## 使用技術
