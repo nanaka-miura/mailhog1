@@ -32,24 +32,59 @@ class UserInformationTest extends TestCase
             'payment' => 'カード支払い',
             'postal_code' => '111-1111',
             'address' => '東京都品川区',
-            'building' => null,
         ]);
 
         $response = $this->get('/mypage');
 
+
         $response->assertStatus(200);
 
-        $response->assertSee($user->name); // ユーザー名の確認
-        
+        $response->assertSee($user->name);
         if ($user->image) {
-        $response->assertSee('<img src="' . asset('storage/' . $user->image) . '"', false);
-    }
-
-         foreach ($userProducts as $product) {
-            $response->assertSee($product->name, false);
+            $response->assertSee('<img src="' . asset('storage/' . $user->image) . '"', false);
         }
 
-        // 購入した商品が正しく表示されていることを確認
-        $response->assertSee($productToPurchase->name, false);
-}
+        $response = $this->get('/mypage?tab=sell');
+        $response->assertStatus(200);
+
+        foreach ($userProducts as $product) {
+            $imagePath = asset('storage/' . $product->image);
+        $response->assertSee($product->name);
+        $response->assertSee($imagePath, false);
+        $response->assertSee(route('products.show', $product->id));
+        }
+
+        $response = $this->get('/mypage?tab=buy');
+        $response->assertStatus(200);
+
+        $response->assertSee($productToPurchase->name);
+        $response->assertSeeInOrder([
+            '<img','src="' . asset('storage/' . $productToPurchase->image) . '"'
+        ], false);
+
+        $response->assertSee(route('products.show', $productToPurchase->id));
+    }
+
+    /** @test */
+    public function profile_page_displays_default_values_correctly()
+    {
+        $user = User::first();
+        $this->actingAs($user);
+
+        $response = $this->get('/mypage/profile');
+
+        $response->assertStatus(200);
+
+        $response->assertSee('value="' . e($user->name) . '"', false);
+
+        $response->assertSee('value="' . e($user->postal_code) . '"', false);
+
+        $response->assertSee('value="' . e($user->address) . '"', false);
+
+        if ($user->image) {
+            $response->assertSee('<img src="' . asset('storage/' . $user->image) . '"', false);
+        } else {
+            $response->assertSee('class="profile__item--default-img"', false);
+        }
+    }
 }

@@ -39,7 +39,7 @@ class UserController extends Controller
     public function profile(Request $request)
     {
         $user = Auth::user();
-        $tab = $request->get('tab', 'listed');
+        $tab = $request->get('tab', 'sell');
         $products = Product::where('user_id',$user->id)->get();
         $purchasedProducts = Order::where('user_id', $user->id)->with('product')->get();
         return view('profile',compact('user', 'tab', 'products', 'purchasedProducts'));

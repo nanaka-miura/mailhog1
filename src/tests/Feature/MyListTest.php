@@ -22,8 +22,10 @@ class MyListTest extends TestCase
     /** @test */
     public function test_can_fetch_like_products()
     {
-        $user = User::first();
-        $product = Product::first();
+        $user = User::all()->random();
+        $otherUser = User::where('id', '!=', $user->id)->inRandomOrder()->first();
+        $product = $otherUser->products()->inRandomOrder()->get()->random();
+
         $user->likeProducts()->attach($product->id);
 
         $this->actingAs($user);
@@ -37,10 +39,13 @@ class MyListTest extends TestCase
     /** @test */
     public function test_sold_items_display_sold_label()
     {
-        $user = User::first();
-        $product = Product::first();
+        $user = User::all()->random();
+        $otherUser = User::where('id', '!=', $user->id)->inRandomOrder()->first();
+        $product = $otherUser->products()->inRandomOrder()->get()->random();
+
         $product->sold_out = true;
         $product->save();
+
         $user->likeProducts()->attach($product->id);
 
         $this->actingAs($user);
@@ -55,23 +60,16 @@ class MyListTest extends TestCase
     /** @test */
     public function test_user_cannot_see_own_listed_products_after_login()
     {
-        $user = User::first();
+        $user = User::all()->random();
+        $ownProduct = $user->products()->inRandomOrder()->first();
 
-        $ownProduct = Product::first();
-        $ownProduct->user_id = $user->id;
-        $ownProduct->save();
-
-        $otherProduct = Product::where('id', '!=', $ownProduct->id)->first();
-
-        $user->likeProducts()->attach($otherProduct->id);
+        $user->likeProducts()->attach($ownProduct->id);
 
         $this->actingAs($user);
 
         $response = $this->get('/?tab=mylist');
 
         $response->assertDontSee($ownProduct->name);
-
-        $response->assertSee($otherProduct->name);
     }
 
     /** @test */

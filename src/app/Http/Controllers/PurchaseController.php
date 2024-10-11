@@ -22,6 +22,7 @@ class PurchaseController extends Controller
         $postal_code = $user->postal_code;
         $address = $user->address;
         $building = $user->building;
+
         return view('purchase', compact('product','user', 'postal_code', 'address', 'building', 'id'));
     }
 
@@ -29,9 +30,9 @@ class PurchaseController extends Controller
     {
         session([
             'postal_code' => $request->input('postal_code'),
-            'shipping_address' => $request->input('address'),
-            'shipping_building' => $request->input('building'),
-                    'selected_payment' => session('selected_payment'),
+            'address' => $request->input('address'),
+            'building' => $request->input('building'),
+            'selected_payment' => session('selected_payment'),
         ]);
 
         return redirect()->route('purchase',['id' => $id]);
@@ -52,8 +53,8 @@ class PurchaseController extends Controller
         $order->user_id = $user->id;
         $order->product_id = $product->id;
         $order->postal_code = session('postal_code', $user->postal_code);
-        $order->shipping_address = session('shipping_address', $user->address);
-        $order->shipping_building = session('shipping_building', $user->building);
+        $order->shipping_address = session('address', $user->address);
+        $order->shipping_building = session('building', $user->building);
         $order->purchase_date = now();
         $order->payment = $request->input('payment');
         $order->save();
@@ -123,8 +124,8 @@ class PurchaseController extends Controller
         $order = Order::where('product_id', $id)->latest()->first();
         session()->forget('selected_payment');
         session()->forget('postal_code');
-        session()->forget('shipping_address');
-        session()->forget('shipping_building');
+        session()->forget('address');
+        session()->forget('building');
 
         return redirect('/mypage');
     }

@@ -48,5 +48,4 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['signed'])
     ->name('verification.verify');
-
 Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');

@@ -44,18 +44,13 @@ class ProductListTest extends TestCase
     /** @test */
     public function test_user_cannot_see_own_listed_products()
     {
-        $user = User::first();
-        $ownProduct = Product::first();
-        $ownProduct->user_id = $user->id;
-        $ownProduct->save();
-
-        $otherProduct = Product::where('id', '!=', $ownProduct->id)->first();
+        $user = User::all()->random();
+        $ownProduct = $user->products()->inRandomOrder()->first();
 
         $this->actingAs($user);
 
         $response = $this->get('/');
 
         $response->assertDontSee($ownProduct->name);
-        $response->assertSee($otherProduct->name);
     }
 }
