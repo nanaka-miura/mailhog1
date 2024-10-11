@@ -43,6 +43,7 @@ class ListingTest extends TestCase
             'categories' => [$category->id],
             'condition' => '良好',
             'name' => 'テスト商品',
+            'brand' => 'テストブランド',
             'content' => 'テスト商品の説明です。',
             'price' => 5000,
             'image' => $image,
@@ -58,6 +59,7 @@ class ListingTest extends TestCase
             'category_id' => $category->id,
             'condition' => '良好',
             'name' => 'テスト商品',
+            'brand' => 'テストブランド',
             'content' => 'テスト商品の説明です。',
             'price' => 5000,
             'sold_out' => false

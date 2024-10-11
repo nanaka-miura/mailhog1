@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="form__group">
-            <span class="form__label">ユーザー名</span>
+            <span class="form__label required">ユーザー名</span>
             <input class="form__input" type="text" name="name" value="{{ old('name',$user->name) }}">
             <div class="form__error">
                 @error('name')
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="form__group">
-            <span class="form__label">郵便番号</span>
+            <span class="form__label required">郵便番号</span>
             <input class="form__input" type="text" name="postal_code" value="{{ old('postal_code',$user->postal_code) }}">
             <div class="form__error">
                 @error('postal_code')
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="form__group">
-            <span class="form__label">住所</span>
+            <span class="form__label required">住所</span>
             <input class="form__input" type="text" name="address" value="{{ old('address', $user->address) }}">
             <div class="form__error">
                 @error('address')

@@ -40,7 +40,6 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'doLogin']);
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'store']);
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');

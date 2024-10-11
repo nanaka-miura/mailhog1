@@ -24,7 +24,7 @@ class ProductSearchTest extends TestCase
     {
         $productName = Product::inRandomOrder()->first()->name;
 
-        $response = $this->get('/products?keyword=' . urlencode($productName));
+        $response = $this->get('/?keyword=' . urlencode($productName));
 
         $response->assertStatus(200);
         $response->assertSee($productName);

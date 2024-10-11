@@ -82,6 +82,12 @@
     margin-bottom: 5px;
 }
 
+.required::after {
+    color: #FF0000;
+    content: " ※";
+    font-weight: lighter;
+}
+
 .form__input {
     border: 1px solid #5F5F5F;
     border-radius: 4px;

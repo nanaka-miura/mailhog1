@@ -62,10 +62,22 @@
     margin-bottom: 30px;
 }
 
+#preview-image {
+    margin-top: 20px;
+    max-width: 200px;
+    border-radius: 4px;
+}
+
 .form__label {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
+}
+
+.form__label::after {
+    color: #FF0000;
+    content: " ※";
+    font-weight: lighter;
 }
 
 .form__checkbox__group {

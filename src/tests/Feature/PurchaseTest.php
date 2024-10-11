@@ -95,7 +95,7 @@ class PurchaseTest extends TestCase
             'address' => $user->address,
         ]);
 
-        $response = $this->get(route('products.index'));
+        $response = $this->get(url('/'));
 
         $response->assertStatus(200);
 
