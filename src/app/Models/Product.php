@@ -11,9 +11,9 @@ class Product extends Model
 
     protected $fillable = [
         'user_id',
-        'brand_id',
         'category_id',
         'name',
+        'brand',
         'content',
         'condition',
         'price',
@@ -24,11 +24,6 @@ class Product extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function brand()
-    {
-        return $this->belongsTo(Brand::class);
     }
 
     public function category()

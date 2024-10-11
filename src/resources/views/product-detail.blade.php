@@ -13,7 +13,7 @@
     <div class="product__detail">
         <div class="product__detail__item">
             <h2 class="product__name">{{ $product->name }}</h2>
-            <p class="product__brand">ブランド名</p>
+            <p class="product__brand">{{ $product->brand }}</p>
             <p class="product__price">¥{{ number_format($product->price) }} (税込)</p>
             <div class="product__evaluation">
                 <form class="like-form" action="{{ route('products.like', ['id' => $product->id]) }}" method="post">

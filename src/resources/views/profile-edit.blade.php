@@ -13,10 +13,11 @@
         @csrf
         <div class="form__group">
             <div class="profile__img">
+                <div class="profile__item--default-img" id="default-img"></div>
                 @if ($user->image)
-                    <img class="profile__item--img" id="profile-image" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
+                <img class="profile__item--img" id="profile-image" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}">
                 @else
-                    <div class="profile__item--default-img"></div>
+                <img class="profile__item--img" id="profile-image" style="display: none;" alt="選択された画像はありません。">
                 @endif
                 <label class="form__file" for="file-upload">画像を選択する</label>
                 <input id="file-upload" class="form__file" type="file" name="image" accept="image/*" style="display: none;" onchange="previewImage(event)">
@@ -72,18 +73,18 @@
 
 <script>
     function previewImage(event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
+    const file = event.target.files[0];
+    const reader = new FileReader();
 
-        reader.onload = function (e) {
-            const profileImage = document.getElementById('profile-image');
-            profileImage.src = e.target.result;
-            profileImage.style.display = 'block';
-        };
+    reader.onload = function (e) {
+        const profileImage = document.getElementById('profile-image');
+        profileImage.src = e.target.result;
+        profileImage.style.display = 'block'; // 画像を表示
+    };
 
-        if (file) {
-            reader.readAsDataURL(file);
-        }
+    if (file) {
+        reader.readAsDataURL(file);
     }
+}
 </script>
 @endsection

@@ -76,6 +76,15 @@
                 </div>
             </div>
             <div class="form__group">
+                <span class="form__label">ブランド名</span>
+                <input class="form__input" type="text" name="brand" value="{{ old('brand') }}">
+                <div class="form__error">
+                    @error('brand')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+            <div class="form__group">
                 <span class="form__label">商品の説明</span>
                 <textarea class="form__textarea" name="content" cols="50" rows="5">{{ old('content') }}</textarea>
                 <div class="form__error">

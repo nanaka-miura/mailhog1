@@ -87,6 +87,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const paymentSelect = document.querySelector('.payment__item--select');
         const selectedPayment = document.getElementById('selected-payment');
+
         const savedPayment = sessionStorage.getItem('selected_payment');
         if (savedPayment) {
             selectedPayment.textContent = savedPayment;
@@ -97,7 +98,12 @@
             selectedPayment.textContent = paymentSelect.value;
             sessionStorage.setItem('selected_payment', paymentSelect.value);
         });
-    });
+
+        const purchaseButton = document.querySelector('.purchase-button');
+        purchaseButton.addEventListener('click', function () {
+            sessionStorage.removeItem('selected_payment');
+        });
+        });
 </script>
 
 @endsection

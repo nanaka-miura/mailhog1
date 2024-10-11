@@ -64,6 +64,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->user_id = auth()->id();
         $product->name = $request->input('name');
+        $product->brand = $request->input('brand');
         $product->content = $request->input('content');
         $product->condition = $request->input('condition');
         $product->price = (int) $request->input('price');

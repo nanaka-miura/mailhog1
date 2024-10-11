@@ -62,6 +62,8 @@ class PurchaseController extends Controller
         $product->sold_out = true;
         $product->save();
 
+        session()->forget(['selected_payment', 'postal_code', 'address', 'building']);
+
         if ($request->input('payment') === 'カード支払い') {
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
@@ -117,16 +119,5 @@ class PurchaseController extends Controller
         $user = auth()->user();
 
         return view('address-change', compact('product','user','id'));
-    }
-
-    public function complete($id)
-    {
-        $order = Order::where('product_id', $id)->latest()->first();
-        session()->forget('selected_payment');
-        session()->forget('postal_code');
-        session()->forget('address');
-        session()->forget('building');
-
-        return redirect('/mypage');
     }
 }

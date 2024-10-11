@@ -28,6 +28,7 @@ class ExhibitionRequest extends FormRequest
             'categories' => "required|array|min:1",
             'condition' => "required",
             'name' => "required",
+            'brand' => "required",
             'content' => "required|max:255",
             'price' => "required|numeric|min:0"
         ];
@@ -43,6 +44,7 @@ class ExhibitionRequest extends FormRequest
             'categories.array' => 'カテゴリーを選択してください',
             'condition.required' => '商品の状態を選択してください',
             'name.required' => '商品名を入力してください',
+            'brand.required' => 'ブランド名を入力してください',
             'content.required' => '商品の説明を入力してください',
             'content.max' => '商品の説明は255文字以下で入力してください',
             'price.required' => '販売価格を入力してください',
