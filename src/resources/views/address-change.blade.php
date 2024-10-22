@@ -10,7 +10,7 @@
         <h2>住所の変更</h2>
     </div>
     <form class="form" action="{{ route('purchase.updateAddress',['id' => $product->id]) }}" method="post">
-        @csrf
+        @
         <div class="form__group">
             <span class="form__label">郵便番号</span>
             <input class="form__input" type="text" name="postal_code"  value="{{ old('postal_code') }}">
